@@ -26,7 +26,7 @@ export default class Products extends Component {
 
     return (
       <div className="container">
-        <div className="countries-container">
+        <div className="products-container">
           {productItems.map((item, i) => (
             <ProductsItem key={i} {...item} />
           ))}
