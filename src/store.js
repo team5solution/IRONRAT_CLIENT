@@ -1,12 +1,17 @@
 import { applyMiddleware, createStore, compose } from "redux";
+import { composeWithDevTools } from "redux-devtools-extension/developmentOnly";
 import rootReducer from "./reducers";
 import reduxThunk from "redux-thunk";
+import { createLogger } from "redux-logger";
 
-export default createStore(
-  rootReducer,
-  {},
-  compose(
-    applyMiddleware(reduxThunk),
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-  )
-);
+const logger = createLogger({
+  collapsed: true,
+  diff: true
+});
+let middleware;
+if (process.env.NODE_ENV === "production") {
+  middleware = composeWithDevTools(applyMiddleware(reduxThunk));
+} else {
+  middleware = composeWithDevTools(applyMiddleware(reduxThunk, logger));
+}
+export default createStore(rootReducer, {}, middleware);
