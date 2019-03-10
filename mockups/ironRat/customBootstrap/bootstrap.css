@@ -474,6 +474,10 @@ pre {
   margin-right: -15px;
   margin-left: -15px; }
 
+    .row:before, .row:after {
+        display: none !important;
+    }
+
 .no-gutters {
   margin-right: 0;
   margin-left: 0; }
