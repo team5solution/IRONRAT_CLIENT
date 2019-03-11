@@ -4,6 +4,10 @@ import Home from "../components/home";
 import About from "../components/about";
 import Contact from "../components/contact";
 import Products from "../components/products/index";
+import Reviews from "../components/reviews/index";
+import Careers from "../components/careers/index";
+import Messages from "../components/messages/index";
+import Appointment from "../components/appointment/appointment";
 
 export default () => {
   return (
@@ -12,6 +16,10 @@ export default () => {
       <Route path="/about" component={About} />
       <Route path="/contact" component={Contact} />
       <Route path="/products" component={Products} />
+      <Route path="/reviews" component={Reviews} />
+      <Route path="/careers" component={Careers} />
+      <Route path="/messages" component={Messages} />
+      <Route path="/appointment" component={Appointment} />
     </Switch>
   );
 };

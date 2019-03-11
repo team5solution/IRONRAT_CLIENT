@@ -66,7 +66,7 @@ const NavBar = () => {
           </li>
         </ul>
         <p className="navbar-text mr-4 mt-6 mb-3 h6">
-          <Link to="/login">Log in </Link>
+          <a href="http://localhost:5000/">Log in </a>
         </p>
       </div>
     </nav>
