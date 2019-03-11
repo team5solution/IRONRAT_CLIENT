@@ -1,10 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Logo from "../images/IronRatsLogo.svg";
+import { MANAGER_URL } from "../settings";
 const NavBar = () => {
   return (
     <nav className="navbar navbar-expand-lg navbar-primary bg-dark">
-      <a className="navbar-brand" href="index.html">
+      <Link className="navbar-brand" to="/">
         <p className="h3 mt-1 mb-6">
           <img
             src={Logo}
@@ -14,7 +15,7 @@ const NavBar = () => {
           />
           I R C
         </p>
-      </a>
+      </Link>
       <button
         className="navbar-toggler"
         type="button"
@@ -66,7 +67,7 @@ const NavBar = () => {
           </li>
         </ul>
         <p className="navbar-text mr-4 mt-6 mb-3 h6">
-          <a href="http://localhost:5000/">Log in </a>
+          <a href={MANAGER_URL}>Log in </a>
         </p>
       </div>
     </nav>
