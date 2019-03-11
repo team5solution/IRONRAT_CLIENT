@@ -17,21 +17,21 @@ const About = () => {
             <div className="carousel-item active">
               <img
                 src={AboutImg}
-                alt="Iron Rats Powder Coating logo"
+                alt="Iron Rat Custom Powder Coating logo"
                 className="img-fluid"
               />
             </div>
             <div className="carousel-item">
               <img
                 src={AboutImg}
-                alt="Iron Rats Powder Coating logo"
+                alt="Iron Rat Custom Powder Coating logo"
                 className="img-fluid"
               />
             </div>
             <div className="carousel-item">
               <img
                 src={AboutImg}
-                alt="Iron Rats Powder Coating logo"
+                alt="Iron Rat Custom Powder Coating logo"
                 className="img-fluid"
               />
             </div>
