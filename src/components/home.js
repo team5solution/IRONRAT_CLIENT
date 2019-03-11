@@ -44,21 +44,21 @@ class Home extends Component {
               <div className="carousel-item active">
                 <img
                   src={Slide1}
-                  alt="Iron Rats Powder Coating logo"
+                  alt="Iron Rat Custom Powder Coating logo"
                   className="img-fluid"
                 />
               </div>
               <div className="carousel-item">
                 <img
                   src={Slide2}
-                  alt="Iron Rats Powder Coating logo"
+                  alt="Iron Rat Custom Powder Coating logo"
                   className="img-fluid"
                 />
               </div>
               <div className="carousel-item">
                 <img
                   src={Slide3}
-                  alt="Iron Rats Powder Coating logo"
+                  alt="Iron Rat Custom Powder Coating logo"
                   className="img-fluid"
                 />
               </div>
@@ -99,7 +99,7 @@ class Home extends Component {
                     <p>
                       <img
                         src={PlaceHolderIcon}
-                        alt="Iron Rats Powder Coating icon"
+                        alt="Iron Rat Custom Powder Coating icon"
                         className="img-fluid"
                       />
                     </p>
@@ -119,7 +119,7 @@ class Home extends Component {
                     <p>
                       <img
                         src={PlaceHolderIcon}
-                        alt="Iron Rats Powder Coating icon"
+                        alt="Iron Rat Custom Powder Coating icon"
                         className="img-fluid"
                       />
                     </p>
@@ -141,7 +141,7 @@ class Home extends Component {
                     <p>
                       <img
                         src={PlaceHolderIcon}
-                        alt="Iron Rats Powder Coating icon"
+                        alt="Iron Rat Custom Powder Coating icon"
                         className="img-fluid"
                       />
                     </p>
@@ -161,7 +161,7 @@ class Home extends Component {
                     <p>
                       <img
                         src={PlaceHolderIcon}
-                        alt="Iron Rats Powder Coating icon"
+                        alt="Iron Rat Custom Powder Coating icon"
                         className="img-fluid"
                       />
                     </p>
@@ -182,7 +182,7 @@ class Home extends Component {
                   <p>
                     <img
                       src={Stars}
-                      alt="Iron Rats Powder Coating icon"
+                      alt="Iron Rat Custom Powder Coating icon"
                       className="img-fluid"
                     />
                   </p>
@@ -218,7 +218,7 @@ class Home extends Component {
                   <p>
                     <img
                       src={Stars}
-                      alt="Iron Rats Powder Coating icon"
+                      alt="Iron Rat Custom Powder Coating icon"
                       className="img-fluid"
                     />
                   </p>
