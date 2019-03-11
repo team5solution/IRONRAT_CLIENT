@@ -11,7 +11,7 @@ const NavBar = () => {
             src={Logo}
             width="100"
             height="70"
-            alt="Iron Rat Custom Powder Coating logo"
+            alt="Iron Rat Customs Powder Coating logo"
           />
           I R C
         </p>
