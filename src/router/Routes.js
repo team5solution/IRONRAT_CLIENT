@@ -6,7 +6,7 @@ import Contact from "../components/contact";
 import Products from "../components/products/index";
 import Reviews from "../components/reviews/index";
 import Careers from "../components/careers/index";
-import Messages from "../components/messages/index";
+
 import Appointment from "../components/appointment/appointment";
 
 export default () => {
@@ -18,7 +18,7 @@ export default () => {
       <Route path="/products" component={Products} />
       <Route path="/reviews" component={Reviews} />
       <Route path="/careers" component={Careers} />
-      <Route path="/messages" component={Messages} />
+
       <Route path="/appointment" component={Appointment} />
     </Switch>
   );
