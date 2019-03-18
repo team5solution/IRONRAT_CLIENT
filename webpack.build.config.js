@@ -1,5 +1,5 @@
 const path = require("path");
-
+const MODULE_PATHS = ["./node_modules"];
 module.exports = {
   mode: "development",
   entry: "./src/index.js",
@@ -7,6 +7,7 @@ module.exports = {
     path: path.resolve(__dirname, "dist"),
     filename: "bundle.js"
   },
+  resolve: { modules: MODULE_PATHS, extensions: [".js", ".jsx", ".css"] },
   module: {
     rules: [
       {
@@ -21,6 +22,10 @@ module.exports = {
           { loader: "css-loader" },
           { loader: "sass-loader" }
         ]
+      },
+      {
+        test: /\.(gif|png|jp(e*)g|svg)$/,
+        use: ["file-loader"]
       }
     ]
   }

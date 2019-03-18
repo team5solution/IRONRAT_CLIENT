@@ -13,6 +13,7 @@ module.exports = {
     port: 8000,
     historyApiFallback: true
   },
+
   module: {
     rules: [
       {
@@ -27,6 +28,10 @@ module.exports = {
           { loader: "css-loader" },
           { loader: "sass-loader" }
         ]
+      },
+      {
+        test: /\.(gif|png|jp(e*)g|svg)$/,
+        use: ["file-loader"]
       }
     ]
   },
