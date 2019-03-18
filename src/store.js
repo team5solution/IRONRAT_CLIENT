@@ -6,7 +6,7 @@ import { createLogger } from "redux-logger";
 import socketIOClient from "socket.io-client";
 import { createSocketMiddleWare } from "./socketMiddleWare";
 
-const socket = socketIOClient("http://localhost:3000");
+const socket = socketIOClient("https://powerful-badlands-91453.herokuapp.com");
 const webSocketMiddleWare = createSocketMiddleWare(socket);
 const logger = createLogger({
   collapsed: true,
