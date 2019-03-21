@@ -19,8 +19,8 @@ const Footer = () => {
           </a>
         </p>
       </div>
-      <div class="row mt-4 mb-4">
-        <div class="col-md-4">
+      <div className="row mt-4 mb-4">
+        <div className="col-md-4">
           <p>
             <a href="https://en.wikipedia.org/wiki/Powder_coating">
               What is powder coating?
@@ -28,7 +28,7 @@ const Footer = () => {
           </p>
         </div>
 
-        <div class="col-md-4">
+        <div className="col-md-4">
           <p>
             <a href="https://www.bencosales.com/metal-strippers/b17-procedures-best-practices-the-bomb-of-strippers/">
               About Benco B17
@@ -36,7 +36,7 @@ const Footer = () => {
           </p>
         </div>
 
-        <div class="col-md-4">
+        <div className="col-md-4">
           <p>
             <a href="http://www.kecocoatings.com/news/cerakote-what-is-it-and-does-it-work-for-you/">
               About Cerakote
