@@ -41,21 +41,21 @@ class Home extends Component {
 
           <div id="demo" className="carousel slide">
             <div className="carousel-inner">
-              <div className="item active">
+              <div className="carousel-item active">
                 <img
                   src={Slide1}
                   alt="Iron Rat Customs Powder Coating logo"
                   className="img-fluid"
                 />
               </div>
-              <div className="item">
+              <div className="carousel-item">
                 <img
                   src={Slide2}
                   alt="Iron Rat Customs Powder Coating logo"
                   className="img-fluid"
                 />
               </div>
-              <div className="item">
+              <div className="carousel-item">
                 <img
                   src={Slide3}
                   alt="Iron Rat Customs Powder Coating logo"
