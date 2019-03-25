@@ -11,6 +11,9 @@ export default function appointmentValidateInput(data) {
   if (validator.isEmpty(data.email) || !validator.isEmail(data.email)) {
     errors.email = "This field is required";
   }
+  if(validator.isEmpty(data.date) || !validator.isDate(data.date)){
+    errors.date = "This field is required";
+  }
   if (validator.isEmpty(data.content)) {
     errors.content = "This field is required";
   }
