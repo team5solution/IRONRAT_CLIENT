@@ -27,8 +27,6 @@ class AppointmentPage extends Component {
     }
   }
   render() {
-    //console.log(this.props);
-    //console.log(this.state);
     const { isSent, isSending, error } = this.props.appointment;
 
     let alertModal;

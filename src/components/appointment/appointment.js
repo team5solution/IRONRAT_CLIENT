@@ -18,7 +18,6 @@ class Appointment extends Component {
       content: "",
       errors: {}
     };
-    //this.regex = /(&nbsp;|<([^>]+)>)/gi;
   }
   passValid = () => {
     const { errors, isValid } = appointmentValidateInput(this.state);
@@ -30,7 +29,6 @@ class Appointment extends Component {
     return isValid;
   };
   onSubmit = e => {
-    //console.log("on submit");
     e.preventDefault();
     const isValid = this.passValid();
     console.log("isValid", isValid);
