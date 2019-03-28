@@ -5,6 +5,7 @@ import { sendAppointment } from "../../action/appointment";
 import {
   TextFieldGroup,
   TextAreaGroup,
+  DateGroup,
   appointmentValidateInput
 } from "../../common";
 
@@ -85,15 +86,15 @@ class Appointment extends Component {
             this.onChange(e);
           }}
         />
-        <TextAreaGroup
-          field="date"
-          label="Choose prefered date:"
-          value={date}
-          error={errors.date}
-          onChange={e => {
-            this.onChange(e);
-          }}
-        />
+        <DateGroup
+        field="date"
+        label="Choose prefered date:"
+        value={date}
+        error={errors.date}
+        onChange={e => {
+          this.onChange(e);
+        }}
+          />
         <TextAreaGroup
           field="content"
           label="what kind of work do you want done:"
