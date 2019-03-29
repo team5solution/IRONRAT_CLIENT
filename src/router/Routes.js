@@ -6,10 +6,6 @@ import Contact from "../components/contact";
 import Products from "../components/products/index";
 import Reviews from "../components/reviews/index";
 import Careers from "../components/careers/index";
-<<<<<<< HEAD
-=======
-
->>>>>>> master
 import AppointmentPage from "../components/appointment/appointmentPage";
 
 export default () => {
@@ -21,10 +17,6 @@ export default () => {
       <Route path="/products" component={Products} />
       <Route path="/reviews" component={Reviews} />
       <Route path="/careers" component={Careers} />
-<<<<<<< HEAD
-=======
-
->>>>>>> master
       <Route path="/appointment" component={AppointmentPage} />
     </Switch>
   );
