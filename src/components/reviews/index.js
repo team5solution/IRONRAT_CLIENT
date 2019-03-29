@@ -15,7 +15,7 @@ class Reviews extends Component {
       errors: {}
     };
   };
-
+//ewewe
   onOpenModal = () => {
     this.setState({ open: true });
   };
