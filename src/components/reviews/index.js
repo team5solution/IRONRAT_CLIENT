@@ -1,59 +1,3 @@
-
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { fetchReview } from "../../action/reviews";
-import { Loading } from "../../common";
-import ReviewItem from "./reviewItems";
-import PropTypes from "prop-types";
-import NavBar from "../navBar";
-import Footer from "../footer";
-
-class Reviews extends Component {
-  constructor(props) {
-    super(props);
-  }
-  componentDidMount() {
-    this.props.fetchReview();
-  }
-
-  render() {
-    const {
-      review: { isFetching, reviewItem}
-    } = this.props;
-
-    if (isFetching) {
-      return <Loading />;
-    }
-
-    return (
-      <div>
-        <NavBar />
-        <div className="collapse" id="reviews">
-          {reviewItem.map((item) => (
-            <ReviewItem review={item} key={item._id} />
-          ))}
-        </div>
-        <Footer />
-      </div>
-    );
-  }
-}
-
-function mapStateToProps(state) {
-  return {
-    review: state.review
-  };
-}
-Reviews.propTypes = {
-  fetchReview: PropTypes.func.isRequired
-};
-
-export default connect(
-  mapStateToProps,
-  { fetchReview }
-)(Reviews);
-
-/*
 import React, { Component } from "react";
 import NavBar from "../navBar";
 import Footer from "../footer";
@@ -168,4 +112,3 @@ class Reviews extends Component {
   }
 }
 export default Reviews;
-*/
