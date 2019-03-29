@@ -7,6 +7,10 @@
     "start": "webpack-dev-server",
     "build": "webpack --config webpack.build.config.js"
   },
+  "engines": {
+    "node": "8.11.4",
+    "npm": "5.6.0"
+  },
   "dependencies": {
     "@babel/cli": "^7.0.0",
     "@babel/core": "^7.3.4",
@@ -38,8 +42,11 @@
     "node-sass": "^4.8.3",
     "prop-types": "^15.7.2",
     "react": "^16.3.1",
+<<<<<<< HEAD
     "react-bootstrap4-modal": "^1.7.0",
     "react-datepicker": "^2.3.0",
+=======
+>>>>>>> master
     "react-dom": "^16.3.1",
     "react-rater": "^5.0.5",
     "react-redux": "^5.0.7",

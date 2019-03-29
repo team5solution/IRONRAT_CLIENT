@@ -15,7 +15,11 @@ class Appointment extends Component {
     this.state = {
       name: "",
       email: "",
+<<<<<<< HEAD
       date:"",
+=======
+      date: "",
+>>>>>>> master
       content: "",
       errors: {}
     };
@@ -61,11 +65,19 @@ class Appointment extends Component {
     const { name, email, date, content, errors } = this.state;
     //console.log(this.state);
     const {
+<<<<<<< HEAD
       appointment: {isSent, isSending, error }
     } = this.props;
 
     return (
       <div>
+=======
+      appointment: { isSent, isSending, error }
+    } = this.props;
+
+    return (
+      <div className="form-group mb-5">
+>>>>>>> master
         {errors.form && <div className="alert alert-danger">{errors.form}</div>}
         <TextFieldGroup
           field="name"
@@ -87,6 +99,7 @@ class Appointment extends Component {
           }}
         />
         <DateGroup
+<<<<<<< HEAD
         field="date"
         label="Choose prefered date:"
         value={date}
@@ -95,6 +108,16 @@ class Appointment extends Component {
           this.onChange(e);
         }}
           />
+=======
+          field="date"
+          label="Choose prefered date:"
+          value={date}
+          error={errors.date}
+          onChange={e => {
+            this.onChange(e);
+          }}
+        />
+>>>>>>> master
         <TextAreaGroup
           field="content"
           label="what kind of work do you want done:"
