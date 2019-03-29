@@ -15,7 +15,7 @@ class Appointment extends Component {
     this.state = {
       name: "",
       email: "",
-      date: "",
+      date:"",
       content: "",
       errors: {}
     };
@@ -61,11 +61,11 @@ class Appointment extends Component {
     const { name, email, date, content, errors } = this.state;
     //console.log(this.state);
     const {
-      appointment: { isSent, isSending, error }
+      appointment: {isSent, isSending, error }
     } = this.props;
 
     return (
-      <div className="form-group mb-5">
+      <div>
         {errors.form && <div className="alert alert-danger">{errors.form}</div>}
         <TextFieldGroup
           field="name"
@@ -87,14 +87,14 @@ class Appointment extends Component {
           }}
         />
         <DateGroup
-          field="date"
-          label="Choose prefered date:"
-          value={date}
-          error={errors.date}
-          onChange={e => {
-            this.onChange(e);
-          }}
-        />
+        field="date"
+        label="Choose prefered date:"
+        value={date}
+        error={errors.date}
+        onChange={e => {
+          this.onChange(e);
+        }}
+          />
         <TextAreaGroup
           field="content"
           label="what kind of work do you want done:"

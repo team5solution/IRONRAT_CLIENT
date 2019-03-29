@@ -4468,17 +4468,6 @@ button.bg-dark:focus {
 .d-inline-flex {
   display: inline-flex !important; }
 
-.cut-content {
- 
-  display: -webkit-box;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  line-clamp: 4;
-  box-orient: vertical;
-  -webkit-line-clamp: 4; /* number of lines to show */
-  -webkit-box-orient: vertical;
-}
-
 @media (min-width: 576px) {
   .d-sm-none {
     display: none !important; }

@@ -1,7 +1,7 @@
 import validator from "validator";
 import isEmpty from "../isEmpty";
 
-export default function messageValidateInput(data) {
+export default function appointmentValidateInput(data) {
   let errors = {};
 
   if (validator.isEmpty(data.name)) {

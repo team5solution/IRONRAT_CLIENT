@@ -7,45 +7,30 @@ import Slide2 from "../images/sliderimage2.gif";
 import Slide3 from "../images/sliderimage3.gif";
 import PlaceHolderIcon from "../images/placeholdericon.png";
 import Stars from "../images/stars.png";
-import PropTypes from "prop-types";
-import { connect } from "react-redux";
-import { fetchProducts } from "../action/products";
-import { fetchCareer } from "../action/careers";
-import { SERVER_URL } from "../settings";
+//import { connect } from "react-redux";
+//import socketIOClient from "socket.io-client";
+//import Products from "./products/index";
+//import SERVER_URL from "../settings.js";
+//import { addNewProduct } from "../action/products";
+//const m = ({ products }) => ({ products });
+
+/*@connect(
+  m,
+  { addNewProduct }
+)*/
 class Home extends Component {
   constructor(props) {
     super(props);
   }
   componentDidMount() {
-    if (this.props.products.productItems.length === 0) {
-      this.props.fetchProducts();
-    }
-    if (this.props.career.careerItems.length === 0) {
-      this.props.fetchCareer();
-    }
+    /*const that = this;
+    const socket = socketIOClient("http://localhost:3000");
+    socket.on("new product", data =>
+      that.props.addNewProduct(data.createdProduct)
+    );*/
   }
   render() {
-    const {
-      products: { productItems },
-      career: { careerItems }
-    } = this.props;
-
-    const productDemoPic =
-      productItems.length > 0
-        ? SERVER_URL + productItems[0].images[0]
-        : PlaceHolderIcon;
-    const productDemoInfo =
-      productItems.length > 0
-        ? productItems[0].description
-        : "No detail product information";
-    const careerDemoPic =
-      careerItems.length > 0
-        ? SERVER_URL + careerItems[0].images[0]
-        : PlaceHolderIcon;
-    const careerDemoInfo =
-      careerItems.length > 0
-        ? careerItems[0].description
-        : "No career information";
+    //return <Products />;
     return (
       <div>
         <NavBar />
@@ -54,7 +39,7 @@ class Home extends Component {
 
           <hr />
 
-          <div id="demo" className="carousel slide">
+          <div id="demo" className="carousel slide" data-ride="carousel">
             <div className="carousel-inner">
               <div className="carousel-item active">
                 <img
@@ -113,14 +98,18 @@ class Home extends Component {
 
                     <p>
                       <img
-                        src={productDemoPic}
+                        src={PlaceHolderIcon}
                         alt="Iron Rat Customs Powder Coating icon"
                         className="img-fluid"
                       />
                     </p>
                   </Link>
 
-                  <p className="cut-content">{productDemoInfo}</p>
+                  <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
+                    malesuada sodales lacus et lacinia. Donec tellus ipsum,
+                    finibus a purus quis, aliquam blandit mauris.
+                  </p>
                 </div>
 
                 <div className="col-md-6">
@@ -136,7 +125,7 @@ class Home extends Component {
                     </p>
                   </Link>
 
-                  <p className="cut-content">
+                  <p>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
                     malesuada sodales lacus et lacinia. Donec tellus ipsum,
                     finibus a purus quis, aliquam blandit mauris.
@@ -158,7 +147,7 @@ class Home extends Component {
                     </p>
                   </Link>
 
-                  <p className="cut-content">
+                  <p>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
                     malesuada sodales lacus et lacinia. Donec tellus ipsum,
                     finibus a purus quis, aliquam blandit mauris.
@@ -171,14 +160,18 @@ class Home extends Component {
 
                     <p>
                       <img
-                        src={careerDemoPic}
+                        src={PlaceHolderIcon}
                         alt="Iron Rat Customs Powder Coating icon"
                         className="img-fluid"
                       />
                     </p>
                   </Link>
 
-                  <p className="cut-content">{careerDemoInfo}</p>
+                  <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
+                    malesuada sodales lacus et lacinia. Donec tellus ipsum,
+                    finibus a purus quis, aliquam blandit mauris.
+                  </p>
                 </div>
               </div>
 
@@ -244,17 +237,5 @@ class Home extends Component {
     );
   }
 }
-function mapStateToProps(state) {
-  return {
-    products: state.products,
-    career: state.career
-  };
-}
-Home.propTypes = {
-  fetchProducts: PropTypes.func.isRequired,
-  fetchCareer: PropTypes.func.isRequired
-};
-export default connect(
-  mapStateToProps,
-  { fetchProducts, fetchCareer }
-)(Home);
+
+export default Home;

@@ -1,13 +1,6 @@
 import axios from "axios";
 
-import {
-  ROOT,
-  REQUEST_PRODUCTS,
-  RECEIVE_PRODUCTS,
-  NEW_PRODUCT,
-  UPDATE_PRODUCT_FINISH,
-  DELETE_PRODUCT_FINISH
-} from "./types";
+import { ROOT, REQUEST_PRODUCTS, RECEIVE_PRODUCTS, NEW_PRODUCT } from "./types";
 
 export const fetchProducts = () => async dispatch => {
   try {
@@ -24,12 +17,4 @@ export const fetchProducts = () => async dispatch => {
 };
 export const addNewProduct = product => dispatch => {
   dispatch({ type: NEW_PRODUCT, payload: product });
-};
-export const updateProduct = product => dispatch => {
-  // console.log(res);
-  dispatch({ type: UPDATE_PRODUCT_FINISH, payload: product });
-};
-
-export const deleteProduct = product => dispatch => {
-  dispatch({ type: DELETE_PRODUCT_FINISH, payload: product });
 };
