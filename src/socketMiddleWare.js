@@ -1,4 +1,6 @@
 import { addNewProduct } from "./action/products";
+import { addNewReview } from "./action/reviews";
+
 
 export const createSocketMiddleWare = socket => {
   let eventFlag = false;
@@ -7,6 +9,9 @@ export const createSocketMiddleWare = socket => {
       eventFlag = true;
       socket.on("new product", data => {
         next(addNewProduct(data.createdProduct));
+      });
+      socket.on("new review", data => {
+        next(addNewReview(data));
       });
     }
     return next(action);
