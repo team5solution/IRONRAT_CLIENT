@@ -15,7 +15,7 @@ export default (state = INITIAL_STATE, action) => {
       return { ...state, isFetching: true };
     }
     case RECEIVE_REVIEW: {
-      return { ...state, isFetching: false, REVIEWItem: action.payload };
+      return { ...state, isFetching: false, reviewItem: action.payload };
     }
     case NEW_REVIEW: {
       return {
