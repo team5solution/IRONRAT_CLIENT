@@ -1,6 +1,6 @@
 import React,{Component} from "react";
 import * as moment from "moment";
-import Rater from 'react-rater'
+import Rater from 'react-rater';
 import 'react-rater/lib/react-rater.css'
 
 const ReviewItem = (item) => {
