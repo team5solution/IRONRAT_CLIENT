@@ -2,35 +2,50 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import NavBar from "./navBar";
 import Footer from "./footer";
-import Slide1 from "../images/sliderimage1.gif";
-import Slide2 from "../images/sliderimage2.gif";
-import Slide3 from "../images/sliderimage3.gif";
-import PlaceHolderIcon from "../images/placeholdericon.png";
-import Stars from "../images/stars.png";
-//import { connect } from "react-redux";
-//import socketIOClient from "socket.io-client";
-//import Products from "./products/index";
-//import SERVER_URL from "../settings.js";
-//import { addNewProduct } from "../action/products";
-//const m = ({ products }) => ({ products });
-
-/*@connect(
-  m,
-  { addNewProduct }
-)*/
+//import Slide1 from "../images/sliderimage1.gif";
+//import Slide2 from "../images/sliderimage2.gif";
+//import Slide3 from "../images/sliderimage3.gif";
+//import PlaceHolderIcon from "../images/placeholdericon.png";
+//import Stars from "../images/stars.png";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { fetchProducts } from "../action/products";
+import { fetchCareer } from "../action/careers";
+import { SERVER_URL } from "../settings";
 class Home extends Component {
   constructor(props) {
     super(props);
   }
   componentDidMount() {
-    /*const that = this;
-    const socket = socketIOClient("http://localhost:3000");
-    socket.on("new product", data =>
-      that.props.addNewProduct(data.createdProduct)
-    );*/
+    if (this.props.products.productItems.length === 0) {
+      this.props.fetchProducts();
+    }
+    if (this.props.career.careerItems.length === 0) {
+      this.props.fetchCareer();
+    }
   }
   render() {
-    //return <Products />;
+    const {
+      products: { productItems },
+      career: { careerItems }
+    } = this.props;
+
+    const productDemoPic =
+      productItems.length > 0
+        ? SERVER_URL + productItems[0].images[0]
+        : "/dist/images/placeholdericon.png";
+    const productDemoInfo =
+      productItems.length > 0
+        ? productItems[0].description
+        : "No detail product information";
+    const careerDemoPic =
+      careerItems.length > 0
+        ? SERVER_URL + careerItems[0].images[0]
+        : "/dist/images/placeholdericon.png";
+    const careerDemoInfo =
+      careerItems.length > 0
+        ? careerItems[0].description
+        : "No career information";
     return (
       <div>
         <NavBar />
@@ -39,25 +54,25 @@ class Home extends Component {
 
           <hr />
 
-          <div id="demo" className="carousel slide" data-ride="carousel">
+          <div id="demo" className="carousel slide">
             <div className="carousel-inner">
               <div className="carousel-item active">
                 <img
-                  src={Slide1}
+                  src="/dist/images/sliderimage1.gif"
                   alt="Iron Rat Customs Powder Coating logo"
                   className="img-fluid"
                 />
               </div>
               <div className="carousel-item">
                 <img
-                  src={Slide2}
+                  src="/dist/images/sliderimage2.gif"
                   alt="Iron Rat Customs Powder Coating logo"
                   className="img-fluid"
                 />
               </div>
               <div className="carousel-item">
                 <img
-                  src={Slide3}
+                  src="/dist/images/sliderimage3.gif"
                   alt="Iron Rat Customs Powder Coating logo"
                   className="img-fluid"
                 />
@@ -98,18 +113,14 @@ class Home extends Component {
 
                     <p>
                       <img
-                        src={PlaceHolderIcon}
+                        src={productDemoPic}
                         alt="Iron Rat Customs Powder Coating icon"
                         className="img-fluid"
                       />
                     </p>
                   </Link>
 
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
-                    malesuada sodales lacus et lacinia. Donec tellus ipsum,
-                    finibus a purus quis, aliquam blandit mauris.
-                  </p>
+                  <p className="cut-content">{productDemoInfo}</p>
                 </div>
 
                 <div className="col-md-6">
@@ -118,14 +129,14 @@ class Home extends Component {
 
                     <p>
                       <img
-                        src={PlaceHolderIcon}
+                        src="/dist/images/placeholdericon.png"
                         alt="Iron Rat Customs Powder Coating icon"
                         className="img-fluid"
                       />
                     </p>
                   </Link>
 
-                  <p>
+                  <p className="cut-content">
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
                     malesuada sodales lacus et lacinia. Donec tellus ipsum,
                     finibus a purus quis, aliquam blandit mauris.
@@ -140,14 +151,14 @@ class Home extends Component {
 
                     <p>
                       <img
-                        src={PlaceHolderIcon}
+                        src="/dist/images/placeholdericon.png"
                         alt="Iron Rat Customs Powder Coating icon"
                         className="img-fluid"
                       />
                     </p>
                   </Link>
 
-                  <p>
+                  <p className="cut-content">
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
                     malesuada sodales lacus et lacinia. Donec tellus ipsum,
                     finibus a purus quis, aliquam blandit mauris.
@@ -160,18 +171,14 @@ class Home extends Component {
 
                     <p>
                       <img
-                        src={PlaceHolderIcon}
+                        src={careerDemoPic}
                         alt="Iron Rat Customs Powder Coating icon"
                         className="img-fluid"
                       />
                     </p>
                   </Link>
 
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
-                    malesuada sodales lacus et lacinia. Donec tellus ipsum,
-                    finibus a purus quis, aliquam blandit mauris.
-                  </p>
+                  <p className="cut-content">{careerDemoInfo}</p>
                 </div>
               </div>
 
@@ -181,7 +188,7 @@ class Home extends Component {
 
                   <p>
                     <img
-                      src={Stars}
+                      src="/dist/images/stars.png"
                       alt="Iron Rat Customs Powder Coating icon"
                       className="img-fluid"
                     />
@@ -217,7 +224,7 @@ class Home extends Component {
 
                   <p>
                     <img
-                      src={Stars}
+                      src="/dist/images/stars.png"
                       alt="Iron Rat Customs Powder Coating icon"
                       className="img-fluid"
                     />
@@ -237,5 +244,17 @@ class Home extends Component {
     );
   }
 }
-
-export default Home;
+function mapStateToProps(state) {
+  return {
+    products: state.products,
+    career: state.career
+  };
+}
+Home.propTypes = {
+  fetchProducts: PropTypes.func.isRequired,
+  fetchCareer: PropTypes.func.isRequired
+};
+export default connect(
+  mapStateToProps,
+  { fetchProducts, fetchCareer }
+)(Home);

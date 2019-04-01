@@ -2,9 +2,10 @@ import { combineReducers } from "redux";
 import Products from "./products";
 import Message from "./message";
 import Appointment from "./appointment";
+import Career from "./career";
 export default combineReducers({
   products: Products,
   message: Message,
-  appointment: Appointment
-  //product: Product,
+  appointment: Appointment,
+  career: Career
 });

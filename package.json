@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server",
-    "build": "webpack --config webpack.build.config.js"
+    "build": "webpack --config webpack.build.config.js",
+    "build-server": "webpack --config webpack.server.config.js"
   },
   "dependencies": {
     "@babel/cli": "^7.0.0",
@@ -26,14 +27,19 @@
     "@babel/plugin-proposal-throw-expressions": "^7.0.0",
     "@babel/plugin-syntax-dynamic-import": "^7.0.0",
     "@babel/plugin-syntax-import-meta": "^7.0.0",
+    "@babel/polyfill": "^7.4.0",
     "@babel/preset-env": "^7.0.0",
     "@babel/preset-react": "^7.0.0",
+    "@babel/register": "^7.4.0",
+    "asset-require-hook": "^1.2.0",
     "axios": "^0.18.0",
     "babel-loader": "^8.0.0",
     "babel-upgrade": "^0.0.24",
     "classnames": "^2.2.6",
     "css-loader": "^0.28.11",
+    "css-modules-require-hook": "^4.2.3",
     "html-webpack-plugin": "^3.2.0",
+    "ignore-styles": "^5.0.1",
     "moment": "^2.24.0",
     "node-sass": "^4.8.3",
     "prop-types": "^15.7.2",
@@ -43,6 +49,7 @@
     "react-dom": "^16.3.1",
     "react-redux": "^5.0.7",
     "react-responsive-modal": "^3.6.0",
+    "react-router-config": "^5.0.0",
     "redux": "^3.7.2",
     "redux-devtools-extension": "^2.13.8",
     "redux-logger": "^3.0.6",

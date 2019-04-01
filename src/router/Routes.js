@@ -8,7 +8,7 @@ import Reviews from "../components/reviews/index";
 import Careers from "../components/careers/index";
 import AppointmentPage from "../components/appointment/appointmentPage";
 
-export default () => {
+/*export default () => {
   return (
     <Switch>
       <Route exact path="/" component={Home} />
@@ -20,4 +20,31 @@ export default () => {
       <Route path="/appointment" component={AppointmentPage} />
     </Switch>
   );
-};
+};*/
+export default [
+  { component: Home, path: "/", exact: true },
+  {
+    component: About,
+    path: "/about"
+  },
+  {
+    component: Contact,
+    path: "/contact"
+  },
+  {
+    component: Products,
+    path: "/products"
+  },
+  {
+    component: Reviews,
+    path: "/reviews"
+  },
+  {
+    component: Careers,
+    path: "/careers"
+  },
+  {
+    component: AppointmentPage,
+    path: "/appointment"
+  }
+];

@@ -6,7 +6,7 @@ import store from "./store";
 
 import "../css/main.css";
 
-render(
+hydrate(
   <Provider store={store}>
     <Router />
   </Provider>,

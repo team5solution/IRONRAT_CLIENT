@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Logo from "../images/IronRatsLogo.svg";
+//import Logo from "../images/IronRatsLogo.svg";
 import { MANAGER_URL } from "../settings";
 const NavBar = () => {
   return (
@@ -8,7 +8,7 @@ const NavBar = () => {
       <Link className="navbar-brand" to="/">
         <p className="h3 mt-1 mb-6">
           <img
-            src={Logo}
+            src="/dist/images/IronRatsLogo.svg"
             width="100"
             height="70"
             alt="Iron Rat Customs Powder Coating logo"

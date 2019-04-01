@@ -1,7 +1,7 @@
 import React from "react";
 import NavBar from "./navBar";
 import Footer from "./footer";
-import AboutImg from "../images/about-us-img.jpg";
+//import AboutImg from "../images/about-us-img.jpg";
 
 const About = () => {
   return (
@@ -16,21 +16,21 @@ const About = () => {
           <div className="carousel-inner">
             <div className="carousel-item active">
               <img
-                src={AboutImg}
+                src="/images/about-us-img.jpg"
                 alt="Iron Rat Customs Powder Coating logo"
                 className="img-fluid"
               />
             </div>
             <div className="carousel-item">
               <img
-                src={AboutImg}
+                src="/images/about-us-img.jpg"
                 alt="Iron Rat Customs Powder Coating logo"
                 className="img-fluid"
               />
             </div>
             <div className="carousel-item">
               <img
-                src={AboutImg}
+                src="/images/about-us-img.jpg"
                 alt="Iron Rat Customs Powder Coating logo"
                 className="img-fluid"
               />
