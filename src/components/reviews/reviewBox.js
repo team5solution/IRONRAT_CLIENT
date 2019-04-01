@@ -1,7 +1,15 @@
 import React, { Component } from "react";
 import Modal from 'react-responsive-modal';
-import Rater from 'react-rater';
-import 'react-rater/lib/react-rater.css';
+import ReactStars from 'react-stars';
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { sendReview } from "../../action/reviews";
+import {
+  TextFieldGroup,
+  TextAreaGroup,
+  reviewValidateInput
+} from "../../common";
+import Rater from "react-rater";
 
 class ReviewBox extends Component {
   constructor(props) {
@@ -23,7 +31,7 @@ class ReviewBox extends Component {
   };
   
   passValid = () => {
-    const { errors, isValid } = messageValidateInput(this.state);
+    const { errors, isValid } = reviewValidateInput(this.state);
 
     if (!isValid) {
       this.setState({ errors });
@@ -32,7 +40,6 @@ class ReviewBox extends Component {
     return isValid;
   };
   onSubmit = e => {
-    //console.log("on submit");
     e.preventDefault();
     const isValid = this.passValid();
     console.log("isValid", isValid);
@@ -40,16 +47,16 @@ class ReviewBox extends Component {
       this.setState({
         errors: {}
       });
-      const message = {
+      const review = {
         name: this.state.name,
-        email: this.state.email,
-        content: this.state.content
+        rating: this.state.rating,
+        comment: this.state.reviewContent
       };
-      this.props.sendMessage(message);
+      this.props.sendReview(review);
       this.setState({
         name: "",
-        email: "",
-        content: "",
+        rating: 0,
+        reviewContent: "",
         errors: {}
       });
     }
@@ -57,51 +64,82 @@ class ReviewBox extends Component {
   onChange = e => {
     this.setState({ [e.target.name]: e.target.value });
   };
+  ratingChanged = (new_rating) => {
+    console.log(new_rating);
+    this.state.rating = new_rating;
+      
+  }
+  
   render() {
-    const { open } = this.state;
+    
+    const { open, name, rating, reviewContent, errors } = this.state;    
+    const {
+      review: {isSent, isSending, error }
+    } = this.props;
     return (
  <div>
      <hr/>
         <button onClick={this.onOpenModal} className="btn btn-primary btn-lg" ><h6>Submit a Review</h6></button>
-        <div className="modal fade" >
-            <div className="modal-dialog modal-lg"></div>
-        <div className="modal-content">
         <Modal open={open} onClose={this.onCloseModal} showCloseIcon={false}>
                     <div className="modal-header">
                         <h4 className="modal-title text-dark">Create review</h4>
                     </div>
-                    <div className="modal-body">
-                    
-                        <div className="form-group mb-5">
-                            <p>
-                                <label className="text-dark" >Name:</label>
-                            </p>
-                            <input  className="form-control" id="name"/>
-                        </div>
-                        <div className="form-group mb-5">
-                            <p>
-                                <label className="text-dark" >Rating:</label>
-                            </p>
-                            <Rater />
-                        </div>
-                        <div className="form-group mb-5">
-                            <p>
-                                <label className="text-dark" >Review:</label>
-                            </p>
-                            <textarea className="form-control" rows="8" id="review"></textarea>
-                        </div>
 
-                        <button className="btn btn-primary"><h6>submit review</h6></button>
-                    </div>
+                    {errors.form && <div className="alert alert-danger">{errors.form}</div>}
+                    <div className="text-dark">
+        <TextFieldGroup
+          field="name"
+          label="Name:"
+          value={name}
+          error={errors.name}
+          onChange={e => {
+            this.onChange(e);
+          }}
+        />
+        <TextAreaGroup
+          field="reviewContent"
+          label="Review:"
+          value={reviewContent}
+          error={errors.reviewContent}
+          onChange={e => {
+            this.onChange(e);
+          }}
+        />
+                <ReactStars
+        onChange={this.ratingChanged}
+        count={5}
+        value={1}
+        size={30}
+        half={false}
+          />
+        <button
+          type="button"
+          className="btn btn-primary"
+          onClick={this.onSubmit}
+          disabled={isSending}
+        >
+          <h6>Submit Review</h6>
+        </button>
+
                     <div className="modal-footer">
                         <button  className="btn btn-success" onClick={this.onCloseModal}>Close</button>
                     </div>
+                    </div>
                     </Modal>
-            </div>
-            
-            </div>
             </div>
     );
   }
 }
-export default ReviewBox;
+function mapStateToProps(state) {
+  return {
+    review: state.review
+  };
+}
+ReviewBox.propTypes = {
+  sendReview: PropTypes.func.isRequired
+};
+
+export default connect(
+  mapStateToProps,
+  { sendReview }
+)(ReviewBox);

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ROOT, REQUEST_REVIEW, RECEIVE_REVIEW, NEW_REVIEW } from "./types";
+import { ROOT, REQUEST_REVIEW, RECEIVE_REVIEW, NEW_REVIEW, SEND_REVIEW, REVIEW_SENT, SEND_REVIEW_ERROR } from "./types";
 
 export const fetchReview = () => async dispatch => {
   try {
@@ -13,4 +13,18 @@ export const fetchReview = () => async dispatch => {
 };
 export const addNewReview = review => dispatch => {
   dispatch({ type: NEW_REVIEW, payload: review});
+};
+export const sendReview = review => {
+  return dispatch => {
+    dispatch({ type: SEND_REVIEW });
+    axios
+      .post(`${ROOT}review`, review)
+      .then(result => {
+        console.log(result);
+        dispatch({ type: REVIEW_SENT });
+      })
+      .catch(err => {
+        dispatch({ type: SEND_REVIEW_ERROR });
+      });
+  };
 };

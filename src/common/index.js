@@ -4,5 +4,6 @@ export { default as TextFieldGroup } from "./textField";
 export { default as TextAreaGroup } from "./textArea";
 export { default as DateGroup } from "./datePicker";
 export { default as messageValidateInput } from "./validator/message";
+export { default as reviewValidateInput } from "./validator/review";
 export { default as appointmentValidateInput } from "./validator/appointment";
 export { default as Modal } from "./popup/modal";

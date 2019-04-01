@@ -1,7 +1,6 @@
 import React,{Component} from "react";
 import * as moment from "moment";
-import Rater from 'react-rater';
-import 'react-rater/lib/react-rater.css'
+import ReactStars from 'react-stars';
 
 const ReviewItem = (item) => {
   const rateNum = item.rating;
@@ -15,7 +14,7 @@ const ReviewItem = (item) => {
     <p className="lead">{name}</p>
     <p className="message-date">{reviewDate}</p>
     
-    <Rater rating={rateNum} interactive={false} />
+    <ReactStars size={24} value={rateNum} edit={false} />
     <p>{content}</p>
   </div>
   );
