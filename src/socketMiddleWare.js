@@ -1,5 +1,7 @@
 import { addNewProduct } from "./action/products";
 import { addNewReview } from "./action/reviews";
+import { addNewJob } from "./action/job";
+import { sendCandidate } from "./action/candidates";
 
 
 export const createSocketMiddleWare = socket => {
@@ -12,6 +14,12 @@ export const createSocketMiddleWare = socket => {
       });
       socket.on("new review", data => {
         next(addNewReview(data));
+      });
+      socket.on("new job", data => {
+        next(addNewJob(data));
+      });
+      socket.on("send application", data => {
+        next(sendCandidate(data));
       });
     }
     return next(action);

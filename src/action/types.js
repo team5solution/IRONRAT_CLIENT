@@ -19,3 +19,10 @@ export const RECEIVE_REVIEW = "RECEIVE_REVIEW";
 export const SEND_REVIEW = "SEND_REVIEW";
 export const REVIEW_SENT = "REVIEW_SENT";
 export const SEND_REVIEW_ERROR = "SEND_REVIEW_ERROR";
+
+
+export const REQUEST_JOBS = "REQUEST_JOBS";
+export const RECEIVE_JOBS = "RECEIVE_JOBS";
+export const NEW_JOBS = "NEW_JOBS";
+
+export const SEND_CANDIDATE = "SEND_CANDIDATE";

@@ -1,23 +1,22 @@
 import React, { Component } from "react";
 import Modal from 'react-responsive-modal';
-import ReactStars from 'react-stars';
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { sendReview } from "../../action/reviews";
+import { sendCandidate } from "../../action/candidates";
 import {
   TextFieldGroup,
-  TextAreaGroup,
-  reviewValidateInput
+  candidateValidateInput
 } from "../../common";
 
-class ReviewBox extends Component {
+class Candidate extends Component {
+    
   constructor(props) {
     super(props);
     this.state = {
       open: false,
       name: "",
-      rating: 0,
-      reviewContent: "",
+      email: "",
+      resume: [],
       errors: {}
     };
   };
@@ -30,7 +29,7 @@ class ReviewBox extends Component {
   };
   
   passValid = () => {
-    const { errors, isValid } = reviewValidateInput(this.state);
+    const { errors, isValid } = candidateValidateInput(this.state);
 
     if (!isValid) {
       this.setState({ errors });
@@ -46,39 +45,35 @@ class ReviewBox extends Component {
       this.setState({
         errors: {}
       });
-      const review = {
+      const candidate = {
         name: this.state.name,
-        rating: this.state.rating,
-        comment: this.state.reviewContent
+        email: this.state.email,
+        resume: this.state.resume
       };
-      this.props.sendReview(review);
+      this.props.sendCandidate(candidate);
       this.setState({
-        name: "",
-        rating: 0,
-        reviewContent: "",
-        errors: {}
+      name: "",
+      email: "",
+      resume: [],
+      errors: {}
       });
     }
   };
   onChange = e => {
     this.setState({ [e.target.name]: e.target.value });
   };
-  ratingChanged = (new_rating) => {
-    console.log(new_rating);
-    this.state.rating = new_rating;
-      
-  }
+  
   
   render() {
     
-    const { open, name, rating, reviewContent, errors } = this.state;    
+    const { open, name, email, resume, errors } = this.state;    
     const {
-      review: {isSent, isSending, error }
+      candidate: {isSent, isSending, error }
     } = this.props;
     return (
  <div>
      <hr/>
-        <button onClick={this.onOpenModal} className="btn btn-primary btn-lg" ><h6>Submit a Review</h6></button>
+        <button onClick={this.onOpenModal} className="btn btn-primary btn-lg" ><h6>Apply</h6></button>
         <Modal open={open} onClose={this.onCloseModal} showCloseIcon={false}>
                     <div className="modal-header">
                         <h4 className="modal-title text-dark">Create review</h4>
@@ -95,29 +90,34 @@ class ReviewBox extends Component {
             this.onChange(e);
           }}
         />
-        <TextAreaGroup
-          field="reviewContent"
-          label="Review:"
-          value={reviewContent}
-          error={errors.reviewContent}
+        <TextFieldGroup
+          field="email"
+          label="Email:"
+          value={email}
+          error={errors.email}
           onChange={e => {
             this.onChange(e);
           }}
         />
-                <ReactStars
-        onChange={this.ratingChanged}
-        count={5}
-        value={1}
-        size={30}
-        half={false}
-          />
+        
+        <div className="form-group">
+          <label className="btn btn-info btn-file" style={{ fontSize: "22px" }}>
+            <input
+              type="file"
+              id="resumes"
+              onChange={this.resumeOnChange}
+              multiple
+            />
+          </label>
+        </div>
+        
         <button
           type="button"
           className="btn btn-primary"
           onClick={this.onSubmit}
           disabled={isSending}
         >
-          <h6>Submit Review</h6>
+          <h6>Submit Application</h6>
         </button>
 
                     <div className="modal-footer">
@@ -131,14 +131,14 @@ class ReviewBox extends Component {
 }
 function mapStateToProps(state) {
   return {
-    review: state.review
+    candidate: state.candidate
   };
 }
-ReviewBox.propTypes = {
-  sendReview: PropTypes.func.isRequired
+Candidate.propTypes = {
+  sendCandidate: PropTypes.func.isRequired
 };
 
 export default connect(
   mapStateToProps,
-  { sendReview }
-)(ReviewBox);
+  { sendCandidate }
+)(Candidate);
