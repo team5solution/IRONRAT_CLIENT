@@ -11,10 +11,10 @@ export default function candidateValidateInput(data) {
     errors.email = "This field is required";
   }
   
-  if (validator.isEmpty(data.resume)) {
+  /* if (validator.isEmpty(data.resume)) {
     errors.content = "This field is required";
   }
-
+ */
   return {
     errors,
     isValid: isEmpty(errors)

@@ -13,5 +13,4 @@ export default combineReducers({
   review: Reviews,
   job: Job,
   candidate: Candidate
-  //product: Product,
 });

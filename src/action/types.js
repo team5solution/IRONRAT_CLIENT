@@ -26,3 +26,5 @@ export const RECEIVE_JOBS = "RECEIVE_JOBS";
 export const NEW_JOBS = "NEW_JOBS";
 
 export const SEND_CANDIDATE = "SEND_CANDIDATE";
+export const CANDIDATE_SENT = "CANDIDATE_SENT";
+export const SEND_CANDIDATE_ERROR = "SEND_CANDIDATE_ERROR";
