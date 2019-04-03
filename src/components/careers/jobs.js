@@ -15,7 +15,7 @@ const Job = (item) => {
     );
   });
   return (
-      <div>
+      <div className="col-md-6">
       <h3 className="mt-3">{title}</h3>
      
 <Carousel wrapAround={true} transitionMode={'scroll3d'}>
