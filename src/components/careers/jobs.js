@@ -4,6 +4,7 @@ import Candidate from "./candidates";
 import Carousel from 'nuka-carousel';
 
 const Job = (item) => {
+  const jd = item._id;
   const title = item.title;
   const description= item.description;
   const jobImages = item.images.map((jobItem, index) => {
@@ -21,7 +22,8 @@ const Job = (item) => {
 {jobImages}
       </Carousel>
     <p>{description}</p>
-    <Candidate /> 
+    <Candidate
+     idofJob={jd} titleofJob={title}/>
   </div>
   );
 }; 

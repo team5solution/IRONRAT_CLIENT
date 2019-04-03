@@ -1,12 +1,13 @@
 import React, { Component } from "react";
+import axios from "axios";
 import Modal from 'react-responsive-modal';
-import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { sendCandidate } from "../../action/candidates";
 import {
   TextFieldGroup,
   candidateValidateInput
 } from "../../common";
+import { ROOT } from "../../action/types";
 
 class Candidate extends Component {
     
@@ -19,6 +20,7 @@ class Candidate extends Component {
       resume: [],
       errors: {}
     };
+   // this.url = `${ROOT}apply/${this.props.jd}`;
   };
 //ewewe
   onOpenModal = () => {
@@ -50,7 +52,7 @@ class Candidate extends Component {
         email: this.state.email,
         resume: this.state.resume
       };
-      this.props.sendCandidate(candidate);
+      this.props.sendCandidate(this.props.jd, candidate);
       this.setState({
       name: "",
       email: "",
@@ -76,7 +78,7 @@ class Candidate extends Component {
         <button onClick={this.onOpenModal} className="btn btn-primary btn-lg" ><h6>Apply</h6></button>
         <Modal open={open} onClose={this.onCloseModal} showCloseIcon={false}>
                     <div className="modal-header">
-                        <h4 className="modal-title text-dark">Create review</h4>
+                        <h4 className="modal-title text-dark">{this.props.titleofJob}</h4>
                     </div>
 
                     {errors.form && <div className="alert alert-danger">{errors.form}</div>}
@@ -105,7 +107,6 @@ class Candidate extends Component {
             <input
               type="file"
               id="resumes"
-              onChange={this.resumeOnChange}
               multiple
             />
           </label>
@@ -134,9 +135,6 @@ function mapStateToProps(state) {
     candidate: state.candidate
   };
 }
-Candidate.propTypes = {
-  sendCandidate: PropTypes.func.isRequired
-};
 
 export default connect(
   mapStateToProps,
