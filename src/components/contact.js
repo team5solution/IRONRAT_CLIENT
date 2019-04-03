@@ -1,9 +1,11 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import NavBar from "./navBar";
 import Footer from "./footer";
 import MessageForm from "./message/messageFrom";
 import { connect } from "react-redux";
-import { Modal } from "../common";
+import { Modal, isEmpty, getTheme } from "../common";
+import { fetchTheme } from "../action/themes";
 class Contact extends Component {
   constructor(props) {
     super(props);
@@ -16,6 +18,11 @@ class Contact extends Component {
       alert: false
     });
   };
+  componentDidMount() {
+    if (isEmpty(this.props.theme.info)) {
+      this.props.fetchTheme();
+    }
+  }
   componentDidUpdate() {
     const { isSent, isSending, error } = this.props.message;
     if (isSent || error) {
@@ -27,9 +34,11 @@ class Contact extends Component {
     }
   }
   render() {
-    //console.log(this.props);
-    //console.log(this.state);
     const { isSent, isSending, error } = this.props.message;
+    const { info } = this.props.theme;
+    const { backgroundStyle, linkStyle, navStyle, buttonStyle } = getTheme(
+      info
+    );
 
     let alertModal;
     if (isSent && !error & this.state.alert) {
@@ -51,8 +60,8 @@ class Contact extends Component {
     }
 
     return (
-      <div>
-        <NavBar />
+      <div style={backgroundStyle}>
+        <NavBar navStyle={navStyle} btnStyle={buttonStyle} />
 
         <div className="container">
           <h1>Contact us</h1>
@@ -68,13 +77,15 @@ class Contact extends Component {
               <h2>Call us at at:</h2>
 
               <p>
-                <a href="tel:+16138623030">1 (613) 862-3030</a>
+                <a href="tel:+16138623030" style={linkStyle}>
+                  1 (613) 862-3030
+                </a>
               </p>
 
               <h2>Call us at at:</h2>
 
               <p>
-                <a href="mailto:carlsabourin@gmail.com">
+                <a href="mailto:carlsabourin@gmail.com" style={linkStyle}>
                   carlsabourin@gmail.com
                 </a>
               </p>
@@ -95,8 +106,8 @@ class Contact extends Component {
           <h2>Message us:</h2>
 
           <p>Feel free to leave a comment, feedback or inquires here!</p>
-          <MessageForm />
-          <Footer />
+          <MessageForm btnStyle={buttonStyle} />
+          <Footer bgStyle={backgroundStyle} linkStyle={linkStyle} />
         </div>
       </div>
     );
@@ -104,7 +115,14 @@ class Contact extends Component {
 }
 function mapStateToProps(state) {
   return {
-    message: state.message
+    message: state.message,
+    theme: state.theme
   };
 }
-export default connect(mapStateToProps)(Contact);
+Contact.propTypes = {
+  fetchTheme: PropTypes.func.isRequired
+};
+export default connect(
+  mapStateToProps,
+  { fetchTheme }
+)(Contact);

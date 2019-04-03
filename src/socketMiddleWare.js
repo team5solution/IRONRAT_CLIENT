@@ -1,5 +1,7 @@
 import { addNewProduct, updateProduct, deleteProduct } from "./action/products";
-import { addNewCareer, updateCareer, deleteCareer } from "./action/careers";
+import { addNewTheme, updateTheme } from "./action/themes";
+import { addNewReview, deleteReview } from "./action/reviews";
+import { addNewJob, deleteJob } from "./action/job";
 export const createSocketMiddleWare = socket => {
   let eventFlag = false;
   return store => next => action => {
@@ -14,14 +16,23 @@ export const createSocketMiddleWare = socket => {
       socket.on("delete product", data => {
         next(deleteProduct(data));
       });
-      socket.on("new career", data => {
-        next(addNewCareer(data));
+      socket.on("new theme", data => {
+        next(addNewTheme(data));
       });
-      socket.on("update career", data => {
-        next(updateCareer(data));
+      socket.on("select theme", data => {
+        next(updateTheme(data));
+      });
+      socket.on("new review", data => {
+        next(addNewReview(data));
+      });
+      socket.on("delete review", data => {
+        next(deleteReview(data));
+      });
+      socket.on("new career", data => {
+        next(addNewJob(data));
       });
       socket.on("delete career", data => {
-        next(deleteCareer(data));
+        next(deleteJob(data));
       });
     }
     return next(action);

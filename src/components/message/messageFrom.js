@@ -57,6 +57,7 @@ class MessageForm extends Component {
   render() {
     //console.log(this.props);
     const { name, email, content, errors } = this.state;
+    const { btnStyle } = this.props;
     //console.log(this.state);
     const {
       message: { isSent, isSending, error }
@@ -99,6 +100,7 @@ class MessageForm extends Component {
           className="btn btn-primary"
           onClick={this.onSubmit}
           disabled={isSending}
+          style={btnStyle}
         >
           <h6>submit comment</h6>
         </button>

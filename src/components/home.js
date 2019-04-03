@@ -2,16 +2,13 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import NavBar from "./navBar";
 import Footer from "./footer";
-//import Slide1 from "../images/sliderimage1.gif";
-//import Slide2 from "../images/sliderimage2.gif";
-//import Slide3 from "../images/sliderimage3.gif";
-//import PlaceHolderIcon from "../images/placeholdericon.png";
-//import Stars from "../images/stars.png";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { fetchProducts } from "../action/products";
-import { fetchCareer } from "../action/careers";
+import { fetchJob } from "../action/job";
+import { fetchTheme } from "../action/themes";
 import { SERVER_URL } from "../settings";
+import { isEmpty, getTheme } from "../common";
 class Home extends Component {
   constructor(props) {
     super(props);
@@ -20,15 +17,23 @@ class Home extends Component {
     if (this.props.products.productItems.length === 0) {
       this.props.fetchProducts();
     }
-    if (this.props.career.careerItems.length === 0) {
-      this.props.fetchCareer();
+    if (this.props.career.jobItems.length === 0) {
+      this.props.fetchJob();
+    }
+    if (isEmpty(this.props.theme.info)) {
+      this.props.fetchTheme();
     }
   }
   render() {
     const {
       products: { productItems },
-      career: { careerItems }
+      career: { jobItems },
+      theme: { info }
     } = this.props;
+
+    const { backgroundStyle, linkStyle, navStyle, buttonStyle } = getTheme(
+      info
+    );
 
     const productDemoPic =
       productItems.length > 0
@@ -39,16 +44,14 @@ class Home extends Component {
         ? productItems[0].description
         : "No detail product information";
     const careerDemoPic =
-      careerItems.length > 0
-        ? SERVER_URL + careerItems[0].images[0]
+      jobItems.length > 0
+        ? SERVER_URL + jobItems[0].images[0]
         : "/dist/images/placeholdericon.png";
     const careerDemoInfo =
-      careerItems.length > 0
-        ? careerItems[0].description
-        : "No career information";
+      jobItems.length > 0 ? jobItems[0].description : "No career information";
     return (
-      <div>
-        <NavBar />
+      <div style={backgroundStyle}>
+        <NavBar navStyle={navStyle} btnStyle={buttonStyle} />
         <div className="container">
           <h1>Iron Rat Customs</h1>
 
@@ -92,23 +95,24 @@ class Home extends Component {
               <h2>What is powder coating?</h2>
 
               <p className="mt-3">
-                Powder coating is a type of coating that is applied as a
-                free-flowing, dry powder. The main difference between a
-                conventional liquid paint and a powder coating is that the
-                powder coating does not require a solvent to keep the binder and
-                filler parts in a liquid suspension form.
+                Powder coating is essentially an industrial strength, paint-type
+                coating, which is applied as a free-flowing, dry powder. It is
+                much more durable than traditional liquid paint and is scratch
+                and rust resistant, therefore offering your valuable sports
+                vehicle parts better protection from all elements.
               </p>
 
               <button
                 type="button"
                 className="btn btn-primary btn-block btn-lg mb-3 mt-3 visible-sm visible-xs"
+                style={buttonStyle}
               >
                 <p className="h6">Make an appointment today!</p>
               </button>
 
               <div className="row">
                 <div className="col-md-6">
-                  <Link to="/products">
+                  <Link to="/products" style={linkStyle}>
                     <h3>Products</h3>
 
                     <p>
@@ -124,7 +128,7 @@ class Home extends Component {
                 </div>
 
                 <div className="col-md-6">
-                  <Link to="/contact">
+                  <Link to="/contact" style={linkStyle}>
                     <h3>Contact us</h3>
 
                     <p>
@@ -146,12 +150,12 @@ class Home extends Component {
 
               <div className="row">
                 <div className="col-md-6">
-                  <Link to="/about">
+                  <Link to="/about" style={linkStyle}>
                     <h3>About us</h3>
 
                     <p>
                       <img
-                        src="/dist/images/placeholdericon.png"
+                        src="/dist/images/ironrats_powder_coating_aboutus.jpg"
                         alt="Iron Rat Customs Powder Coating icon"
                         className="img-fluid"
                       />
@@ -159,14 +163,17 @@ class Home extends Component {
                   </Link>
 
                   <p className="cut-content">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
-                    malesuada sodales lacus et lacinia. Donec tellus ipsum,
-                    finibus a purus quis, aliquam blandit mauris.
+                    Iron Rat founder Carl Sabourin has always had a passion and
+                    a hand in motorsports. From a very early age, he would
+                    disassemble, customize, and reassemble his collection of Hot
+                    Wheels, and take apart home appliances (much to his mother’s
+                    dismay) to understand how they worked and see if he could
+                    rebuild them to make them more efficient.
                   </p>
                 </div>
 
                 <div className="col-md-6">
-                  <Link to="/careers">
+                  <Link to="/careers" style={linkStyle}>
                     <h3>Careers</h3>
 
                     <p>
@@ -183,7 +190,7 @@ class Home extends Component {
               </div>
 
               <div className="visible-sm visible-xs">
-                <Link to="/reviews">
+                <Link to="/reviews" style={linkStyle}>
                   <h3>Reviews</h3>
 
                   <p>
@@ -201,6 +208,7 @@ class Home extends Component {
               <button
                 type="button"
                 className="btn btn-primary btn-block btn-lg mb-3 hidden-sm hidden-xs"
+                style={buttonStyle}
               >
                 <p className="h6">Make an appointment today!</p>
               </button>
@@ -219,7 +227,7 @@ class Home extends Component {
               </p>
 
               <div className="hidden-sm hidden-xs">
-                <Link to="/reviews">
+                <Link to="/reviews" style={linkStyle}>
                   <h3>Reviews</h3>
 
                   <p>
@@ -239,7 +247,7 @@ class Home extends Component {
 
         <br />
         <br />
-        <Footer />
+        <Footer bgStyle={backgroundStyle} linkStyle={linkStyle} />
       </div>
     );
   }
@@ -247,14 +255,16 @@ class Home extends Component {
 function mapStateToProps(state) {
   return {
     products: state.products,
-    career: state.career
+    career: state.job,
+    theme: state.theme
   };
 }
 Home.propTypes = {
   fetchProducts: PropTypes.func.isRequired,
-  fetchCareer: PropTypes.func.isRequired
+  fetchJob: PropTypes.func.isRequired,
+  fetchTheme: PropTypes.func.isRequired
 };
 export default connect(
   mapStateToProps,
-  { fetchProducts, fetchCareer }
+  { fetchProducts, fetchJob, fetchTheme }
 )(Home);

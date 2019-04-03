@@ -15,7 +15,7 @@ class Appointment extends Component {
     this.state = {
       name: "",
       email: "",
-      date:"",
+      date: "",
       content: "",
       errors: {}
     };
@@ -57,13 +57,12 @@ class Appointment extends Component {
     this.setState({ [e.target.name]: e.target.value });
   };
   render() {
-    //console.log(this.props);
     const { name, email, date, content, errors } = this.state;
-    //console.log(this.state);
-    const {
-      appointment: {isSent, isSending, error }
-    } = this.props;
 
+    const {
+      appointment: { isSent, isSending, error }
+    } = this.props;
+    const { btnStyle } = this.props;
     return (
       <div>
         {errors.form && <div className="alert alert-danger">{errors.form}</div>}
@@ -87,14 +86,14 @@ class Appointment extends Component {
           }}
         />
         <DateGroup
-        field="date"
-        label="Choose prefered date:"
-        value={date}
-        error={errors.date}
-        onChange={e => {
-          this.onChange(e);
-        }}
-          />
+          field="date"
+          label="Choose prefered date:"
+          value={date}
+          error={errors.date}
+          onChange={e => {
+            this.onChange(e);
+          }}
+        />
         <TextAreaGroup
           field="content"
           label="what kind of work do you want done:"
@@ -109,6 +108,7 @@ class Appointment extends Component {
           className="btn btn-primary"
           onClick={this.onSubmit}
           disabled={isSending}
+          style={btnStyle}
         >
           <h6>Send appointment request</h6>
         </button>

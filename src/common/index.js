@@ -6,3 +6,7 @@ export { default as DateGroup } from "./datePicker";
 export { default as messageValidateInput } from "./validator/message";
 export { default as appointmentValidateInput } from "./validator/appointment";
 export { default as Modal } from "./popup/modal";
+export { default as ImageModal } from "./popup/imageModal";
+export { default as reviewValidateInput } from "./validator/review";
+export { default as candidateValidateInput } from "./validator/candidate";
+export { default as getTheme } from "./getTheme";

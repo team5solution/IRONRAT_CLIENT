@@ -23,16 +23,16 @@ class Modal extends React.Component {
     //console.log(this.state);
     switch (this.props.type) {
       case "success":
-        alertIcon = "/images/success.svg";
+        alertIcon = "/dist/images/success.svg";
         break;
       case "error":
-        alertIcon = "/images/error.svg";
+        alertIcon = "/dist/images/error.svg";
         break;
       case "warning":
-        alertIcon = "/images/warning.svg";
+        alertIcon = "/dist/images/warning.svg";
         break;
       default:
-        alertIcon = "/images/information.svg";
+        alertIcon = "/dist/images/information.svg";
     }
     let modal = this.state.modal ? (
       <div className="backdrop" style={{ display: this.state.modal }}>

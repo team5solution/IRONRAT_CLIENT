@@ -1,114 +1,70 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import { fetchReview } from "../../action/reviews";
+import { fetchTheme } from "../../action/themes";
+import { Loading, isEmpty, getTheme } from "../../common";
+import ReviewItem from "./reviewItems";
+import ReviewBox from "./reviewBox";
+import PropTypes from "prop-types";
 import NavBar from "../navBar";
 import Footer from "../footer";
-import Modal from 'react-responsive-modal';
-//import ReviewItems from "./reviewItems";
 
 class Reviews extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      open: false,
-      name: "",
-      rating: 0,
-      reviewContent: "",
-      errors: {}
-    };
-  };
-//ewewe
-  onOpenModal = () => {
-    this.setState({ open: true });
-  };
-  onCloseModal = () => {
-    this.setState({ open: false });
-  };
-  
-  passValid = () => {
-    const { errors, isValid } = messageValidateInput(this.state);
-
-    if (!isValid) {
-      this.setState({ errors });
+  }
+  componentDidMount() {
+    if (this.props.review.reviewItem.length === 0) {
+      this.props.fetchReview();
     }
-
-    return isValid;
-  };
-  onSubmit = e => {
-    //console.log("on submit");
-    e.preventDefault();
-    const isValid = this.passValid();
-    console.log("isValid", isValid);
-    if (isValid) {
-      this.setState({
-        errors: {}
-      });
-      const message = {
-        name: this.state.name,
-        email: this.state.email,
-        content: this.state.content
-      };
-      this.props.sendMessage(message);
-      this.setState({
-        name: "",
-        email: "",
-        content: "",
-        errors: {}
-      });
+    if (isEmpty(this.props.theme.info)) {
+      this.props.fetchTheme();
     }
-  };
-  onChange = e => {
-    this.setState({ [e.target.name]: e.target.value });
-  };
+  }
+
   render() {
-    const { open } = this.state;
-    return (
- <div>
-   <div>
-        <NavBar />
-        <h1>Customer Reviews</h1>
-        <hr />
-        <button onClick={this.onOpenModal} className="btn btn-primary btn-lg" ><h6>Submit a Review</h6></button>
-        
-        <div className="modal fade" >
-            <div className="modal-dialog modal-lg"></div>
-        <div className="modal-content">
-        <Modal open={open} onClose={this.onCloseModal} showCloseIcon={false}>
-                    <div className="modal-header">
-                        <h4 className="modal-title text-dark">Create review</h4>
-                    </div>
-                    <div className="modal-body">
-                    
-                        <div className="form-group mb-5">
-                            <p>
-                                <label className="text-dark" >Name:</label>
-                            </p>
-                            <input  className="form-control" id="name"/>
-                        </div>
-                        <div className="form-group mb-5">
-                            <p>
-                                <label className="text-dark" >Rating:</label>
-                            </p>
-                            <input className="form-control" id="rate"/>
-                        </div>
-                        <div className="form-group mb-5">
-                            <p>
-                                <label className="text-dark" >Review:</label>
-                            </p>
-                            <textarea className="form-control" rows="8" id="review"></textarea>
-                        </div>
+    const {
+      review: { isFetching, reviewItem }
+    } = this.props;
+    const { info } = this.props.theme;
 
-                        <button className="btn btn-primary"><h6>submit review</h6></button>
-                    </div>
-                    <div className="modal-footer">
-                        <button  className="btn btn-success" onClick={this.onCloseModal}>Close</button>
-                    </div>
-                    </Modal>
-            </div>
-            
-            </div>
-            </div>
-        <Footer />
+    const { backgroundStyle, linkStyle, navStyle, buttonStyle } = getTheme(
+      info
+    );
+    if (isFetching) {
+      return <Loading />;
+    }
+
+    return (
+      <div style={backgroundStyle}>
+        <NavBar navStyle={navStyle} btnStyle={buttonStyle} />
+
+        <div className="container">
+          <h1>Customer Reviews</h1>
+          <br />
+          <ReviewBox btnStyle={buttonStyle} />
+          {reviewItem.map((item, i) => (
+            <ReviewItem key={i} {...item} bgStyle={backgroundStyle} />
+          ))}
+        </div>
+        <Footer bgStyle={backgroundStyle} linkStyle={linkStyle} />
       </div>
     );
   }
 }
-export default Reviews;
+
+function mapStateToProps(state) {
+  return {
+    review: state.review,
+    theme: state.theme
+  };
+}
+Reviews.propTypes = {
+  fetchReview: PropTypes.func.isRequired,
+  fetchTheme: PropTypes.func.isRequired
+};
+
+export default connect(
+  mapStateToProps,
+  { fetchReview, fetchTheme }
+)(Reviews);

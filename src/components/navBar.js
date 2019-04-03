@@ -2,10 +2,16 @@ import React from "react";
 import { Link } from "react-router-dom";
 //import Logo from "../images/IronRatsLogo.svg";
 import { MANAGER_URL } from "../settings";
-const NavBar = () => {
+const NavBar = props => {
+  const { navStyle, btnStyle } = props;
+  let navClass = "navbar navbar-expand-lg navbar-primary bg-dark";
+  if (navStyle !== null && navStyle.backgroundColor !== "#000") {
+    navClass = "navbar navbar-expand-lg navbar-primary";
+  }
+
   return (
-    <nav className="navbar navbar-expand-lg navbar-primary bg-dark">
-      <Link className="navbar-brand" to="/">
+    <nav className={navClass} style={navStyle}>
+      <Link className="navbar-brand" to="/" style={navStyle}>
         <p className="h3 mt-1 mb-6">
           <img
             src="/dist/images/IronRatsLogo.svg"
@@ -24,6 +30,7 @@ const NavBar = () => {
         aria-controls="navbarSupportedContent"
         aria-expanded="false"
         aria-label="Toggle navigation"
+        style={btnStyle}
       >
         <span className="btn btn-primary">MENU</span>
       </button>
@@ -32,42 +39,58 @@ const NavBar = () => {
         <ul className="navbar-nav mr-auto">
           <li className="nav-item mr-4">
             <p className="h6 mt-6 mb-3">
-              <Link to="/">Home </Link>
+              <Link to="/" style={navStyle}>
+                Home
+              </Link>
             </p>
           </li>
           <li className="nav-item mr-4">
             <p className="h6 mt-6 mb-3">
-              <Link to="/reviews">Reviews </Link>
+              <Link to="/reviews" style={navStyle}>
+                Reviews
+              </Link>
             </p>
           </li>
           <li className="nav-item mr-4">
             <p className="h6 mt-6 mb-3">
-              <Link to="/products">Products</Link>
+              <Link to="/products" style={navStyle}>
+                Products
+              </Link>
             </p>
           </li>
           <li className="nav-item mr-4">
             <p className="h6 mt-6 mb-3">
-              <Link to="/about">About us </Link>
+              <Link to="/about" style={navStyle}>
+                About us{" "}
+              </Link>
             </p>
           </li>
           <li className="nav-item mr-4">
             <p className="h6 mt-6 mb-3">
-              <Link to="/contact">Contact us </Link>
+              <Link to="/contact" style={navStyle}>
+                Contact us{" "}
+              </Link>
             </p>
           </li>
           <li className="nav-item mr-4">
             <p className="h6 mt-6 mb-3">
-              <Link to="/careers">Careers </Link>
+              <Link to="/careers" style={navStyle}>
+                Careers{" "}
+              </Link>
             </p>
           </li>
           <li className="nav-item mr-4">
             <p className="h6 mt-6 mb-3">
-              <Link to="/appointment">Make an appointment </Link>
+              <Link to="/appointment" style={navStyle}>
+                Make an appointment{" "}
+              </Link>
             </p>
           </li>
         </ul>
         <p className="navbar-text mr-4 mt-6 mb-3 h6">
-          <a href={MANAGER_URL}>Log in </a>
+          <a href={MANAGER_URL} style={navStyle}>
+            Log in{" "}
+          </a>
         </p>
       </div>
     </nav>

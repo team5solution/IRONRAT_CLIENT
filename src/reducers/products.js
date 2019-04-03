@@ -22,7 +22,7 @@ export default (state = INITIAL_STATE, action) => {
     case NEW_PRODUCT: {
       return {
         ...state,
-        isFetching: false,
+
         productItems: [action.payload, ...state.productItems]
       };
     }

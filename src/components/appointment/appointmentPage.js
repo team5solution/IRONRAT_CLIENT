@@ -1,9 +1,11 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import NavBar from "../navBar";
 import Footer from "../footer";
 import { connect } from "react-redux";
-import { Modal } from "../../common";
+import { Modal, isEmpty, getTheme } from "../../common";
 import Appointment from "./appointment";
+import { fetchTheme } from "../../action/themes";
 class AppointmentPage extends Component {
   constructor(props) {
     super(props);
@@ -16,6 +18,11 @@ class AppointmentPage extends Component {
       alert: false
     });
   };
+  componentDidMount() {
+    if (isEmpty(this.props.theme.info)) {
+      this.props.fetchTheme();
+    }
+  }
   componentDidUpdate() {
     const { isSent, isSending, error } = this.props.appointment;
     if (isSent || error) {
@@ -28,7 +35,10 @@ class AppointmentPage extends Component {
   }
   render() {
     const { isSent, isSending, error } = this.props.appointment;
-
+    const { info } = this.props.theme;
+    const { backgroundStyle, linkStyle, navStyle, buttonStyle } = getTheme(
+      info
+    );
     let alertModal;
     if (isSent && !error & this.state.alert) {
       alertModal = (
@@ -49,15 +59,15 @@ class AppointmentPage extends Component {
     }
 
     return (
-      <div>
-        <NavBar />
+      <div style={backgroundStyle}>
+        <NavBar navStyle={navStyle} btnStyle={buttonStyle} />
 
         <div className="container">
           <h1>Make an appointment</h1>
           <hr />
           {alertModal}
-          <Appointment/>
-          <Footer />
+          <Appointment btnStyle={buttonStyle} />
+          <Footer bgStyle={backgroundStyle} linkStyle={linkStyle} />
         </div>
       </div>
     );
@@ -65,7 +75,14 @@ class AppointmentPage extends Component {
 }
 function mapStateToProps(state) {
   return {
-    appointment: state.appointment
+    appointment: state.appointment,
+    theme: state.theme
   };
 }
-export default connect(mapStateToProps)(AppointmentPage);
+AppointmentPage.propTypes = {
+  fetchTheme: PropTypes.func.isRequired
+};
+export default connect(
+  mapStateToProps,
+  { fetchTheme }
+)(AppointmentPage);
