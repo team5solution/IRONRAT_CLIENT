@@ -65,13 +65,12 @@ class Contact extends Component {
 
               <p>1071 Buckhams Bay Rd, Ottawa, ON K0A 3M0</p>
 
-              <h2>Call us at at:</h2>
-
+              <h2>Telephone Number:</h2>
               <p>
-                <a href="tel:+16138623030">1 (613) 862-3030</a>
+                <a href="tel:+16138623030">(613) 862-3030</a>
               </p>
 
-              <h2>Call us at at:</h2>
+              <h2>Email:</h2>
               <p>
                 <a href="mailto:carlsabourin@gmail.com">
                   carlsabourin@gmail.com
@@ -81,7 +80,7 @@ class Contact extends Component {
 
             <div className="col-md-6">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d11187.574126611913!2d-76.1124147!3d45.4920887!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x87ca9efe3f541643!2sIron+Rat+Customs!5e0!3m2!1sen!2sca!4v1554340795875!5m2!1sen!2sca"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2804.0244827023034!2d-75.75843498415502!3d45.34831804918894!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4cce0718cc4a6ad7%3A0xc6cc467725843e2b!2sAlgonquin+College!5e0!3m2!1sen!2sca!4v1549745730393"
                 width="550"
                 height="400"
                 frameBorder="0"
