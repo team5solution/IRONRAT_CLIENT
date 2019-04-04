@@ -63,7 +63,7 @@ class Contact extends Component {
             <div className="col-md-6">
               <h2>We are located at:</h2>
 
-              <p>1385 Woodroffe Ave, Nepean, ON K2G 1V8</p>
+              <p>1071 Buckhams Bay Rd, Ottawa, ON K0A 3M0</p>
 
               <h2>Call us at at:</h2>
 
@@ -72,7 +72,6 @@ class Contact extends Component {
               </p>
 
               <h2>Call us at at:</h2>
-
               <p>
                 <a href="mailto:carlsabourin@gmail.com">
                   carlsabourin@gmail.com
@@ -82,7 +81,7 @@ class Contact extends Component {
 
             <div className="col-md-6">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2804.0244827023034!2d-75.75843498415502!3d45.34831804918894!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4cce0718cc4a6ad7%3A0xc6cc467725843e2b!2sAlgonquin+College!5e0!3m2!1sen!2sca!4v1549745730393"
+                src="!1m14!1m8!1m3!1d11187.574126611913!2d-76.1124147!3d45.4920887!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x87ca9efe3f541643!2sIron+Rat+Customs!5e0!3m2!1sen!2sca!4v1554340795875!5m2!1sen!2sca"
                 width="550"
                 height="400"
                 frameBorder="0"
