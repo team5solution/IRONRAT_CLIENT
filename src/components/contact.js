@@ -65,15 +65,17 @@ class Contact extends Component {
 
               <p>1071 Buckhams Bay Rd, Ottawa, ON K0A 3M0</p>
 
-              <h2>Telephone Number:</h2>
+              <h2>Call us at at:</h2>
+
               <p>
                 <a href="tel:+16138623030">(613) 862-3030</a>
               </p>
 
-              <h2>Email:</h2>
+              <h2>Call us at at:</h2>
+
               <p>
-                <a href="mailto:carlsabourin@gmail.com">
-                  carlsabourin@gmail.com
+                <a href="mailto:ironratcustom@gmail.com">
+                ironratcustom@gmail.com
                 </a>
               </p>
             </div>
