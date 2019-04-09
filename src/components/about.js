@@ -1,121 +1,136 @@
-import React from "react";
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import { isEmpty, getTheme } from "../common";
+import { fetchTheme } from "../action/themes";
 import NavBar from "./navBar";
 import Footer from "./footer";
-import AboutImg from "../images/about-us-img.jpg";
+//import AboutImg from "../images/about-us-img.jpg";
+class About extends Component {
+  constructor(props) {
+    super(props);
+  }
+  componentDidMount() {
+    if (isEmpty(this.props.theme.info)) {
+      this.props.fetchTheme();
+    }
+  }
+  render() {
+    const {
+      theme: { info }
+    } = this.props;
+    const { backgroundStyle, linkStyle, navStyle, buttonStyle } = getTheme(
+      info
+    );
 
-const About = () => {
-  return (
-    <div>
-      <NavBar />
-      <div className="container">
-        <h1>About us</h1>
+    return (
+      <div style={backgroundStyle}>
+        <NavBar navStyle={navStyle} btnStyle={buttonStyle} />
+        <div className="container">
+          <h1>About us</h1>
 
-        <hr />
+          <hr />
 
-        <div id="demo" className="carousel slide" data-ride="carousel">
-          <div className="carousel-inner">
-            <div className="carousel-item active">
-              <img
-                src={AboutImg}
-                alt="Iron Rat Customs Powder Coating logo"
-                className="img-fluid"
-              />
+          <div id="demo" className="carousel slide" data-ride="carousel">
+            <div className="carousel-inner">
+              <div className="carousel-item active">
+                <img
+                  src="/dist/images/ironrats_powder_coating_aboutus_1.jpg"
+                  alt="Iron Rat Customs Powder Coating logo"
+                  className="img-fluid"
+                />
+              </div>
+              <div className="carousel-item">
+                <img
+                  src="/dist/images/ironrats_powder_coating_aboutus_2.jpg"
+                  alt="Iron Rat Customs Powder Coating logo"
+                  className="img-fluid"
+                />
+              </div>
+              <div className="carousel-item">
+                <img
+                  src="/dist/images/ironrats_powder_coating_aboutus_3.jpg"
+                  alt="Iron Rat Customs Powder Coating logo"
+                  className="img-fluid"
+                />
+              </div>
+              <div className="carousel-item">
+                <img
+                  src="/dist/images/ironrats_powder_coating_aboutus_4.jpg"
+                  alt="Iron Rat Customs Powder Coating logo"
+                  className="img-fluid"
+                />
+              </div>
+              <div className="carousel-item">
+                <img
+                  src="/dist/images/ironrats_powder_coating_aboutus_5.jpg"
+                  alt="Iron Rat Customs Powder Coating logo"
+                  className="img-fluid"
+                />
+              </div>
             </div>
-            <div className="carousel-item">
-              <img
-                src={AboutImg}
-                alt="Iron Rat Customs Powder Coating logo"
-                className="img-fluid"
-              />
-            </div>
-            <div className="carousel-item">
-              <img
-                src={AboutImg}
-                alt="Iron Rat Customs Powder Coating logo"
-                className="img-fluid"
-              />
-            </div>
+
+            <a className="carousel-control-prev" href="#demo" data-slide="prev">
+              <span className="carousel-control-prev-icon" />
+            </a>
+            <a className="carousel-control-next" href="#demo" data-slide="next">
+              <span className="carousel-control-next-icon" />
+            </a>
           </div>
 
-          <a className="carousel-control-prev" href="#demo" data-slide="prev">
-            <span className="carousel-control-prev-icon" />
-          </a>
-          <a className="carousel-control-next" href="#demo" data-slide="next">
-            <span className="carousel-control-next-icon" />
-          </a>
+          <h2>Our story</h2>
+
+          <p>
+            Iron Rat founder Carl Sabourin has always had a passion and a hand
+            in motorsports. From a very early age, he would disassemble,
+            customize, and reassemble his collection of Hot Wheels, and take
+            apart home appliances (much to his mother’s dismay) to understand
+            how they worked and see if he could rebuild them to make them more
+            efficient.
+          </p>
+
+          <p>
+            To this day, he always has a personal project on the go – whether it
+            be muscle cars, ATVs, snowmobiles, or boats.
+          </p>
+
+          <p>
+            After a long career in the public service, Carl decided it was time to make
+            a career out of his passions and created Iron Rat in 2018.
+          </p>
+
+          <p>
+            Iron Rat is the sole powder coating facility specializing in
+            motorsports in the region, and has seen exponential growth since its
+            inception. Iron Rat can powder coat anything that can withstand 425F
+            – ranging from car parts (wheels, callipers, motorcycle frames,
+            fenders) to customized, branded metal coffee mugs and water bottles.
+          </p>
+
+          <p>
+            Carl has been happily married to his wife Jodie for 15 years and is
+            a proud father to two beautiful children, Caydence and Briggs.
+          </p>
+
+          <br />
+          <br />
+
+          <Footer bgStyle={backgroundStyle} linkStyle={linkStyle} />
         </div>
-
-        <h2>Our story</h2>
-
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
-          lobortis eros vel varius luctus. Nunc viverra vestibulum erat a
-          consectetur. Suspendisse in aliquam arcu. Quisque et enim mauris.
-          Suspendisse egestas, lacus eu rutrum scelerisque, quam metus aliquet
-          felis, ut semper lacus justo ac erat. Nunc in tincidunt odio. Duis nec
-          dictum arcu. In ultricies purus ut risus suscipit imperdiet.
-          Suspendisse tellus risus, tincidunt eget venenatis eget, auctor ut
-          sapien. Suspendisse in lacus lacus. Vivamus faucibus faucibus sapien,
-          sit amet laoreet tortor pharetra eu. Aenean et eros tellus. Lorem
-          ipsum dolor sit amet, consectetur adipiscing elit. Duis sodales
-          venenatis tellus a aliquam. Sed erat lorem, condimentum vitae bibendum
-          nec, dapibus a odio. Class aptent taciti sociosqu ad litora torquent
-          per conubia nostra, per inceptos himenaeos.
-        </p>
-
-        <p>
-          Pellentesque et est a ipsum suscipit ultricies eu non ipsum. Aenean
-          luctus lectus diam. Sed finibus consectetur magna ut volutpat. Fusce
-          eu vehicula lorem. Integer porta felis elit, et ornare urna volutpat
-          a. Proin ut libero enim. Maecenas eget massa vehicula, molestie leo
-          quis, luctus turpis. Curabitur fermentum quis velit iaculis ornare.
-          Vivamus nec neque ultricies, bibendum mauris at, ullamcorper nibh.
-          Morbi mattis sit amet leo pharetra commodo. Vivamus sodales lobortis
-          mauris vel dictum.
-        </p>
-
-        <p>
-          Vivamus mollis ullamcorper ultricies. Vestibulum in tellus ut erat
-          consectetur tempus. Praesent tincidunt gravida commodo. Suspendisse a
-          nulla nisl. Cras ullamcorper ullamcorper erat vel convallis. Phasellus
-          lobortis nulla metus, ac cursus nulla molestie id. Sed sagittis, nisl
-          faucibus lacinia ultricies, velit dui ultricies magna, ut dignissim
-          est elit eget nisi. Etiam quis eros aliquet, luctus ipsum vel, rutrum
-          nunc. Aenean pulvinar dolor nec tempus viverra. Sed quis metus quis
-          lorem dictum feugiat vitae eget nisi. Vestibulum sapien mi, congue nec
-          massa et, mollis lacinia elit. Proin turpis sem, imperdiet sit amet
-          nulla sit amet, blandit pulvinar dolor. Interdum et malesuada fames ac
-          ante ipsum primis in faucibus. Nullam porta, ipsum quis aliquam
-          facilisis, velit elit rutrum nunc, ac pellentesque enim dui sit amet
-          ex. Sed a mattis est, vel accumsan orci. Pellentesque porta feugiat
-          eleifend.
-        </p>
-
-        <p>
-          Etiam quis nisi ut ex ornare dictum sit amet non tellus. Vivamus
-          posuere sed libero vel hendrerit. Suspendisse mi nunc, sagittis non
-          massa vel, porttitor ornare leo. Fusce pellentesque tortor quis libero
-          tempus sodales. Donec eget ligula in erat hendrerit finibus.
-          Suspendisse dapibus non nunc ut consectetur. Aliquam nec pretium
-          augue, quis dictum ipsum.
-        </p>
-
-        <p>
-          Curabitur et mi nibh. Curabitur non semper magna, ut tincidunt leo.
-          Vestibulum fermentum libero nec nisi porttitor, in tristique nunc
-          maximus. Praesent non eros justo. Etiam iaculis tellus vel justo
-          dictum maximus. Curabitur bibendum ultrices vulputate. Duis lobortis
-          leo non eros consectetur molestie. Praesent non mi ligula. Donec
-          accumsan justo in enim suscipit volutpat.
-        </p>
-
-        <br />
-        <br />
-
-        <Footer />
       </div>
-    </div>
-  );
+    );
+  }
+}
+function mapStateToProps(state) {
+  return {
+    theme: state.theme
+  };
+}
+About.propTypes = {
+  fetchTheme: PropTypes.func.isRequired
 };
 
-export default About;
+export default connect(
+  mapStateToProps,
+  { fetchTheme }
+)(About);
