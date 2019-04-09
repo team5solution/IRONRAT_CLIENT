@@ -29,7 +29,7 @@ const Footer = props => {
       </div>
 
       <div className="text-center text-primary">
-        <p style={bgStyle}>&copy; 2019 Iron Rat Customs</p>
+        <p style={bgStyle}>2019 Copyright</p>
       </div>
     </div>
   );
