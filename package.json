@@ -32,7 +32,7 @@
     "@babel/preset-react": "^7.0.0",
     "@babel/register": "^7.4.0",
     "asset-require-hook": "^1.2.0",
-    "axios": "^0.18.0",
+    "axios": "^0.18.1",
     "babel-loader": "^8.0.0",
     "babel-upgrade": "^0.0.24",
     "classnames": "^2.2.6",
