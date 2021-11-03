@@ -60,7 +60,7 @@
     "sass-loader": "^7.0.1",
     "socket.io-client": "^2.2.0",
     "style-loader": "^0.20.3",
-    "validator": "^10.11.0"
+    "validator": "^13.7.0"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0",
